@@ -1,0 +1,69 @@
+{% extends 'payapp/base.html' %}
+
+{% block content %}
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Payapp</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="False" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                {% if user.is_authenticated %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/payapp">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+                    </li>
+
+                {% else %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <h1>Dashboard</h1>
+    <h2>Welcome, {{ user.username }}!</h2>
+
+    <h3>Your Profile</h3>
+    <p>Username: {{ user_profile.user.username }}</p>
+    <p>First Name: {{ user_profile.user.first_name }}</p>
+    <p>Last Name: {{ user_profile.user.last_name }}</p>
+    <p>Email: {{ user_profile.user.email }}</p>
+    <p>Balance: {{ user_profile.balance }}</p>
+
+    <h3>Sent Payments</h3>
+    {% if sent_payments %}
+        <ul>
+            {% for payment in sent_payments %}
+                <li>{{ payment.amount }} to {{ payment.receiver.user.username }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No sent payments.</p>
+    {% endif %}
+
+    <h3>Received Payments</h3>
+    {% if received_payments %}
+        <ul>
+            {% for payment in received_payments %}
+                <li>{{ payment.amount }} from {{ payment.sender.user.username }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No received payments.</p>
+    {% endif %}
+{% endblock %}

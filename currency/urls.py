@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import convert_currency
+from .views import ConversionView
 
 urlpatterns = [
-    path('convert_currency/', convert_currency, name='convert_currency'),
+    path('conversion/<str:currency1>/<str:currency2>/<str:amount_of_currency1>/', ConversionView.as_view(),
+         name='conversion'),
 ]

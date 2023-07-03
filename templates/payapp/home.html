@@ -1,0 +1,26 @@
+{% extends "payapp/base.html" %}
+
+{% block title %}
+    Landing Page
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <body>
+    <div class="container text-center py-5 mx-auto">
+        <h2>Hello {{ user.username }}, </h2>
+        <h1 class="fw-bold">Welcome to PayApp</h1>
+        <p>What would you like to do?</p>
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6">
+                <a href="/dashboard" class="btn btn-primary btn-lg me-4">View Recent Transactions</a>
+                <a href="/transfer" class="btn btn-secondary btn-lg me-4">Make a Payment</a>
+                <a href="/request" class="btn btn-success btn-lg">Request Payment</a>
+            </div>
+        </div>
+    </div>
+    </body>
+
+{% endblock %}
