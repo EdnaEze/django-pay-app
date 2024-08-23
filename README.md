@@ -4,3 +4,4 @@ A django web application that lets registered users send receive or request paym
 # Dependecies
 - Python
 - Django
+- Html
